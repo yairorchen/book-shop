@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <title>books</title>
+</head>
+
+<body onload="onInit()">
+
+    <div class="filters-container">
+        <h1>books App</h1>
+        <section class="book-filter">
+            <input class="filter-name-input" type="name" oninput="onSetFilterBy({name:this.value})"
+                placeholder="Type something..." />
+
+            <select class="filter-rate-select" onchange="onSetFilterBy({rate: this.value})">
+            </select>
+            max price:
+            <input type="range" min="0" max="100" value="100" class="filter-price-range"
+                onchange="this.title=this.value;onSetFilterBy({price: this.value})" />
+            </label>
+            <button class="rectangular-btn" onclick="toggleAddBook()">Create new book</button>
+            <label>
+                Descending
+                <input class="sort-desc" type="checkbox" oninput="onSetSortBy()" />
+            </label>
+            <!-- Sort by: -->
+            <select class="sort-by" onchange="onSetSortBy()">
+                <option value="">Select Sorting</option>
+                <option value="rate">By rate</option>
+                <option value="price">price</option>
+                <option value="name">name</option>
+            </select>
+
+            <!-- <div> -->
+            <button class="rectangular-btn" onclick="changeLayout()">change layout</button>
+            <!-- </div> -->
+        </section>
+        <div class="pages">
+            <button class="rectangular-btn" onclick="onMovePage(-1)">Prev Page</button>
+            <button class="rectangular-btn" onclick="onMovePage(1)">Next Page</button>
+        </div>
+    </div>
+
+
+
+    <div class="modal">
+        <button class="close-modal" onclick="onCloseModal()">X</button>
+        <h3></h3>
+        <h4>price: <span></span> </h4>
+        <h1></h1>
+        <h5>book Summary</h5>
+        <p></p>
+
+        <h2><button onclick="onRating(1)">+</button>
+            <p>5</p><button onclick="onRating(-1)">-</button>
+        </h2>
+    </div>
+
+    <section class="main-container">
+        <table class="books-container">
+            <thead>
+                <th>Id</th>
+                <!-- <th>Name</th>
+                <th>Price</th> -->
+                <th class="sort-by" onclick="onSetSortByHeader('name')">Name</th>
+                <th class="sort-by" onclick="onSetSortByHeader('price')">Price</th>
+                <th colspan="3">Actions</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <section class="books-container-cards shadow-drop-center"></section>
+    </section>
+    <section class="add-book hide">
+        <button class="btn-remove" onclick="toggleAddBook()">X</button>
+        <h4>Book title:</h4>
+        <input class="book-name-input" type="text" placeholder="the name of the book..." />
+        <h4>Book price:</h4>
+        <input class="book-price-input" type="text" placeholder="the price of the book..." />
+        <button class="rectangular-btn " onclick="onAddBook()">submit</button>
+
+
+    </section>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Edu VIC WA NT Beginner', cursive;
+        }
+        pre {
+            background-color: lightgray;
+            padding: 3px;
+        }
+
+        .container {
+            background-color: lightpink;
+            padding: 10px;
+            min-height: 50vh;
+            margin: 10px auto;
+        }
+
+        .demo-pre {
+            background-color: lightsalmon;
+        }
+
+        header nav {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Demos</h1>
+        <nav>
+            <a href="#">Home</a> |
+            <a href="#services">Services</a> |
+            <a href="#contact">Contact Us</a> |
+        </nav>
+    </header>
+    <section class="container demo-pre">
+        <textarea oninput="document.querySelector('pre').innerText=this.value"></textarea>
+        <pre>
+Dear Lili,
+I wanted to say hi, 
+
+        Congrats,
+            Muki
+        </pre>
+
+        <pre>
+for x = 10 to 1 {
+    print(x);
+}
+        </pre>
+
+    </section>
+    <a name="services"></a>
+    <section class="container">
+        <h2>Our Service</h2>
+    </section>
+    <a name="contact"></a>
+    <section class="container">
+        <h2>Contact Us</h2>
+    </section>
+
+    <footer>
+        coffeerights to all
+        <nav>
+            <a href="http://www.gmail.com/" target="_blank">
+                Open Gmail (opens a new tab)
+            </a> |
+            <a href="https://code.org/shared/images/gallery/fit-750/gallery_thumbnails_2019a.jpg">
+                Rain is Here
+            </a>
+            |
+            <a href="#">Back to Top</a>
+            |
+            <button disabled onclick="openWin()">Open Win</button>
+            <button onclick="window.history.back()">Go Back</button>
+        </nav>
+        |
+        Coffeerights
+        <span>
+            <script>document.write(new Date().getFullYear())</script>
+        </span>
+
+
+    </footer>
+
+    <script>
+
+        var gBaba = true
+
+        function openWin() {
+            var popup = window.open('http://facebook.com', '', 'width=100,height=80')
+            // var popup = window.open('http://facebook.com', '', '')
+            popup.focus()
+        }
+
+
+
+        function myMax() {
+            var max = -Infinity
+            // console.log(arguments)
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] > max) max = arguments[i]
+            }
+            return max
+        }
+        console.log('Expecting: -Infinity, Actual:', myMax())
+        console.log('Expecting: 0 Actual:', myMax(0, 0))
+        console.log('Expecting: 11, Actual:', myMax(9, 11, 7, 1))
+
+        // The keyword: 'arguments' is NOT AVAILABLE in arrow-functions
+        const foo = function () {
+            console.log(arguments)
+        }
+        foo(100, 200)
+
+    </script>
+</body>
+
+</html>
