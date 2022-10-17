@@ -1,16 +1,21 @@
 body {
-    background-image: radial-gradient(circle, #28ebe3, #00ead3, #00e8c0, #10e5aa, #33e292);
-    text-align: center;
     overflow-x: hidden;
-    padding: 0 40px;
     display: flex;
+}
+
+body.rtl {
+    direction: rtl;
+    background-color: #33e292;
+}
+
+body.ltr {
+    direction: ltr;
+    background-color: #33e292;
 }
 
 td,
 th {
     background-color: rgb(0, 251, 255);
-    height: 40px;
-    min-width: 35px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 5px;
     border-color: black;
@@ -33,7 +38,16 @@ h1 {
     font-family: 'Courier New', monospace;
 }
 
+.container {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+}
 
+
+.modal fade {
+    background-color: #10e5aa;
+}
 
 .main-container {
     display: flex;
@@ -46,13 +60,26 @@ h1 {
     display: flex;
     justify-content: start;
     flex-direction: column;
+    max-width: 250px;
 }
 
 .books-container-cards {
 
     display: flex;
     flex-wrap: wrap;
-    border-radius: 3%;
+    max-width: 996px;
+}
+
+.books-container {
+    max-width: 996px;
+}
+
+.actions {
+    /* background-color: #e5de10; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
 }
 
 .book-preview {
@@ -70,6 +97,24 @@ h1 {
     text-transform: capitalize;
 }
 
+.book-preview-dark {
+    background-image: radial-gradient(circle, #213c3b, #182626, #142e2e, #0e2525, #2b5150);
+    color: rgb(217, 183, 232);
+
+}
+
+.pages {
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: darkcyan;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 120px;
+    border-radius: 30%;
+}
+
 
 .books-container-cards img {
     max-width: 100%;
@@ -79,7 +124,7 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    max-width: 200px;
+    max-width: 400px;
     min-width: 130px;
     background-image: radial-gradient(circle, #56eae2, #47d8d2, #38c6c2, #27b5b2, #12a4a2);
     padding: 10px;
@@ -87,17 +132,22 @@ h1 {
     border-radius: 5%;
 }
 
+.book-filter-dark {
+    background-image: radial-gradient(circle, #696a6a, #384d4d, #a3b7b6, #687272, #171f1e);
+    color: #edf2fffc
+}
+
 
 .book-filter hr {
     margin: 30px;
 }
 
-.modal p {
+.side-modal p {
     color: black;
 }
 
-.modal {
-    background-color: whitesmoke;
+.side-modal {
+    background-color: rgb(181, 237, 243);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     opacity: 97%;
     border-radius: 3%;
@@ -110,6 +160,16 @@ h1 {
     text-align: center;
 }
 
+.side-modal-dark {
+    background-color: rgb(37, 54, 56);
+    color: #d8f3eb;
+
+}
+
+.dark-text {
+    color: #d8f3eb;
+}
+
 .btn-remove {
     background-color: azure;
     border-color: rgb(138, 193, 241);
@@ -120,9 +180,7 @@ h1 {
 
 }
 
-/* button :hover {
-    background-color: blue;
-} */
+
 
 .rectangular-btn {
     background-color: rgb(221, 245, 234);
@@ -143,6 +201,18 @@ h1 {
     border-radius: 29%;
 }
 
+.side-modal h2 button {
+    padding-inline-end: 30px;
+
+}
+
+.rating-change {
+    /* margin-inline-start: 100px; */
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
 .read-btn {
     background-color: rgb(58, 112, 222);
 }
@@ -155,25 +225,25 @@ h1 {
     background-color: rgb(240, 126, 122);
 }
 
-.modal.open {
+.side-modal.open {
     left: 50%;
     transition: left .5s;
 }
 
-.modal h3 {
+.side-modal h3 {
     color: rgb(33, 4, 92);
     text-decoration: overline;
     text-transform: capitalize;
 }
 
-.modal h5 {
+.side-modal h5 {
     color: rgb(33, 4, 92);
     font-size: large;
     text-decoration: overline;
     text-transform: capitalize;
 }
 
-.modal h2 {
+.side-modal h2 {
     color: rgb(100, 8, 206);
     display: flex;
     flex-wrap: wrap;
@@ -184,7 +254,7 @@ h1 {
     margin-left: 20vw;
 }
 
-.modal h2 button {
+.side-modal h2 button {
     color: rgb(0, 0, 0);
     background-color: bisque;
     border-radius: 15%;
@@ -193,7 +263,7 @@ h1 {
     max-width: 2rem;
 }
 
-.modal h4 span {
+.side-modal h4 span {
     color: rgb(134, 12, 240);
 }
 
@@ -203,7 +273,7 @@ h1 {
     margin-top: 0%
 }
 
-.modal>p {
+.side-modal>p {
     text-align: left;
 }
 
@@ -225,15 +295,7 @@ h1 {
 
 }
 
-.pages {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 90vh;
-}
+
 
 .book-name-input,
 .book-price-input,
@@ -258,6 +320,10 @@ h1 {
 
 .hide {
     display: none
+}
+
+.show {
+    display: flex
 }
 
 .shadow-drop-center {

@@ -13,26 +13,23 @@ const gTitles = [
   'the-seasons-of-life',
   'how-to-read-a-book',
 ]
-var gRates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-var PAGE_SIZE = 5
+var PAGE_SIZE = 6
 
 var gPageIdx = 0
 
 var gBooks
 
-_createBooks()
+var gCurrBookClickId
 
-function getRates() {
-  return gRates
-}
+_createBooks()
+console.log(gBooks)
 
 function getBooks() {
-  console.log(gBooks)
   // Filtering:
   var books = gBooks.filter(
     (book) =>
-      book.rate >= gFilterBy.rate &&
+      book.rate <= gFilterBy.rate &&
       book.price <= gFilterBy.price &&
       book.name.includes(gFilterBy.name)
   )
@@ -40,7 +37,6 @@ function getBooks() {
   // Paging:
   const startIdx = gPageIdx * PAGE_SIZE
   books = books.slice(startIdx, startIdx + PAGE_SIZE)
-  console.log(books)
   return books
 }
 
@@ -103,17 +99,10 @@ function getBookById(bookId) {
 
 function rating(val, bookId) {
   var book = getBookById(bookId)
-  if (book.rate > 10 || book.rate < 1) return
-  if (val === 1 && book.rate < 10) {
-    book.rate++
-  }
-  if (val === -1 && book.rate > 1) {
-    book.rate--
-  }
-  console.log(book.rate)
+  if ((book.rate >= 10 && val === 1) || (book.rate <= 1 && val === -1)) return
+  book.rate += val
   _saveBooksToStorage()
   updateRate(bookId)
-  console.log(book)
 }
 
 function setBookSort(sortBy = {}) {
@@ -138,13 +127,55 @@ function setBookFilter(filterBy = {}) {
 
   if (filterBy.name !== undefined) gFilterBy.name = filterBy.name
 
+  if (filterBy.language !== undefined) gFilterBy.language = filterBy.language
+
   return gFilterBy
 }
 
-function movePage(value) {
-  if (value < 0 && gPageIdx > 0) {
+// function movePage(val) {
+//   console.log(val)
+//   if (gPageIdx >= 0 || getBooks().length === PAGE_SIZE) {
+//     console.log(+val)
+//     gPageIdx += val
+//     console.log('lala')
+//   }
+
+//   console.log(gPageIdx + 1)
+//   return gPageIdx + 1
+// }
+
+function movePage(value, btnVal) {
+  if (value === 0) {
+    gPageIdx += btnVal
+  }
+  if (value === -1 && gPageIdx > 0) {
     gPageIdx--
-  } else if (value > 0 && getBooks().length === PAGE_SIZE) {
+  } else if (value === 1 && getBooks().length === PAGE_SIZE) {
     gPageIdx++
   }
+  console.log(gPageIdx + 1)
+  return gPageIdx
+}
+
+function pagesLength() {
+  var pagesLength = gBooks.length / PAGE_SIZE
+  console.log(pagesLength)
+  return pagesLength
+}
+
+function portalPage(val) {
+  if (getBooks().length === PAGE_SIZE) {
+    gPageIdx = val - 1
+    return gPageIdx
+    // } else return gPageIdx - 1
+  }
+}
+function getPageIdx() {
+  return gPageIdx
+}
+
+function onCurrClickId(id) {
+  gCurrBookClickId = id
+  console.log(gCurrBookClickId)
+  return gCurrBookClickId
 }
